@@ -1,0 +1,27 @@
+server {
+    listen 443 quic;
+    listen 443 ssl;
+    listen [::]:443 quic;
+    listen [::]:443 ssl;
+
+    server_name signature-pdf.metropolis.nexus;
+
+    ssl_certificate /etc/letsencrypt/live/signature-pdf.metropolis.nexus/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/signature-pdf.metropolis.nexus/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/signature-pdf.metropolis.nexus/chain.pem;
+
+    include snippets/security.conf;
+    include snippets/cross-origin-security.conf;
+    include snippets/quic.conf;
+    include snippets/proxy.conf;
+    include snippets/robots.conf;
+    include snippets/universal_paths.conf;
+
+    add_header Content-Security-Policy "default-src 'none'; connect-src 'self' blob: data:; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; form-action 'none'; frame-ancestors 'none'; block-all-mixed-content; base-uri 'none'";
+    client_max_body_size 100M;
+
+    location / {
+        proxy_pass http://192.168.2.113:8080;
+    }
+
+}
