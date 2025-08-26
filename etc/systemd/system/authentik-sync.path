@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Authentik certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/auth.metropolis.nexus
+Unit=authentik-sync.service
+
+[Install]
+WantedBy=multi-user.target

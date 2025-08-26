@@ -1,0 +1,36 @@
+[Unit]
+Description=Synchronize Authentik certificates
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+        
+ExecStart=rsync -aL --chown 200001:200001 /etc/letsencrypt/live/auth.metropolis.nexus/fullchain.pem root@192.168.2.111:/srv/authentik/authentik/certs/auth.metropolis.nexus
+ExecStart=rsync -aL --chown 200001:200001 /etc/letsencrypt/live/auth.metropolis.nexus/privkey.pem root@192.168.2.111:/srv/authentik/authentik/certs/auth.metropolis.nexus
+
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateIPC=true
+PrivateTmp=true
+ProcSubset=pid
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=read-only
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectSystem=strict
+RestrictAddressFamilies=
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RuntimeDirectoryMode=700
+SystemCallArchitectures=native
+#SystemCallFilter=@system-service
+SystemCallFilter=~@obsolete
