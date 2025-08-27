@@ -3,7 +3,7 @@ Description=Monitor Nextcloud certificates
 
 [Path]
 PathChanged=/etc/letsencrypt/archive/nextcloud.citadel.chi01.metropolis.nexus
-Unit=vaultwarden-sync.service
+Unit=nextcloud-sync.service
 
 [Install]
 WantedBy=multi-user.target
