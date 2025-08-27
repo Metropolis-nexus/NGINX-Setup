@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Miniflux certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/miniflux.citadel.chi01.metropolis.nexus
+Unit=miniflux-sync.service
+
+[Install]
+WantedBy=multi-user.target
