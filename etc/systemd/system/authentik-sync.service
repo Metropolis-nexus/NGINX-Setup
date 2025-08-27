@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 Type=oneshot
         
-ExecStart=rsync -aL --chown 200001:200001 /etc/letsencrypt/live/auth.metropolis.nexus/fullchain.pem root@192.168.2.111:/srv/authentik/authentik/certs/auth.metropolis.nexus
-ExecStart=rsync -aL --chown 200001:200001 /etc/letsencrypt/live/auth.metropolis.nexus/privkey.pem root@192.168.2.111:/srv/authentik/authentik/certs/auth.metropolis.nexus
+ExecStart=/usr/sbin/rsync -aL --chown 200001:200001 /etc/letsencrypt/live/auth.metropolis.nexus/fullchain.pem root@192.168.2.111:/srv/authentik/authentik/certs/auth.metropolis.nexus
+ExecStart=/usr/sbin/rsync -aL --chown 200001:200001 /etc/letsencrypt/live/auth.metropolis.nexus/privkey.pem root@192.168.2.111:/srv/authentik/authentik/certs/auth.metropolis.nexus
 
 CapabilityBoundingSet=
 LockPersonality=true
