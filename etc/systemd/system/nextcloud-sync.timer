@@ -1,0 +1,10 @@
+[Unit]
+Description=Resync Nextcloud certificates in case of previous failures
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=100min
+
+[Install]
+WantedBy=timers.target

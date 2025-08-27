@@ -1,0 +1,35 @@
+[Unit]
+Description=Synchronize Vaultwarden certificates
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+        
+ExecStart=/usr/sbin/rsync -aL --chown 200003:200003 /etc/letsencrypt/live/vault.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.2.103:/srv/vaultwarden/certs
+ExecStart=/usr/sbin/rsync -aL --chown 200003:200003 /etc/letsencrypt/live/vault.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.2.103:/srv/vaultwarden/certs
+
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateIPC=true
+PrivateTmp=true
+ProcSubset=pid
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=read-only
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectSystem=strict
+RestrictAddressFamilies=
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RuntimeDirectoryMode=700
+SystemCallArchitectures=native
+SystemCallFilter=~@obsolete

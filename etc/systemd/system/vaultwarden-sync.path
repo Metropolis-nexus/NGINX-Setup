@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Vaultwarden certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/vault.citadel.chi01.metropolis.nexus
+Unit=vaultwarden-sync.service
+
+[Install]
+WantedBy=multi-user.target
