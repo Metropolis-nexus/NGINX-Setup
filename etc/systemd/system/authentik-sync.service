@@ -32,4 +32,5 @@ RestrictRealtime=true
 RestrictSUIDSGID=true
 RuntimeDirectoryMode=700
 SystemCallArchitectures=native
+SystemCallFilter=@system-service
 SystemCallFilter=~@obsolete

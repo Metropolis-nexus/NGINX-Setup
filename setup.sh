@@ -46,6 +46,10 @@ deployment_mode_prompt
 # Allow reverse proxy
 sudo setsebool -P httpd_can_network_connect 1
 
+# Allow rsync
+sudo setsebool -P rsync_client 1
+sudo setsebool -P rsync_export_all_ro 1 
+
 # Open ports for NGINX
 if [ -f '/usr/bin/firewalld-cmd' ]; then
     sudo firewall-cmd --permanent --add-service=http
