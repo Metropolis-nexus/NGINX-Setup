@@ -111,13 +111,15 @@ fi
 
 if [ "${deployment_mode}" = 1 ]; then
     sudo mkdir -p /etc/nginx/snippets
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/proxy.conf | sudo tee /etc/nginx/snippets/proxy.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/security.conf | sudo tee /etc/nginx/snippets/security.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions.conf | sudo tee /etc/nginx/snippets/permissions.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions-mic.conf | sudo tee /etc/nginx/snippets/permissions-mic.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/cross-origin-security.conf | sudo tee /etc/nginx/snippets/cross-origin-security.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/proxy.conf | sudo tee /etc/nginx/snippets/proxy.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/htpasswd.conf | sudo tee /etc/nginx/snippets/htpasswd.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/robots.conf | sudo tee /etc/nginx/snippets/robots.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/universal_paths.conf | sudo tee /etc/nginx/snippets/universal_paths.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/htpasswd.conf | sudo tee /etc/nginx/snippets/htpasswd.conf > /dev/null
     sudo touch /etc/nginx/htpasswd
 else
     sudo mkdir -p /etc/nginx/stream.d
