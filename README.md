@@ -21,11 +21,23 @@ sudo reboot
 
 ## Stream Deployment
 
-- Install required dependencies:
-
-```bash
-sudo rpm-ostree install certbot nginx-mod-stream policycoreutils-python-utils
+- Fedora's NGINX Stream is broken at the moment. Add upstream's RHEL 10 repo instead:
 ```
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=http://nginx.org/packages/mainline/centos/10/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+priority=1
+```
+
+- Install required dependencies:
+```bash
+sudo rpm-ostree install certbot nginx policycoreutils-python-utils
+```
+
 - Run `setup.sh`
 - Generate a certificate with the `certbot-command` example
 - Copy `/etc/nginx/stream.d/default` from the repo and adjust accordingly
