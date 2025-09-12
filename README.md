@@ -36,6 +36,7 @@ priority=1
 - Install required dependencies:
 ```bash
 sudo rpm-ostree install certbot nginx policycoreutils-python-utils
+sudo reboot
 ```
 
 - Run `setup.sh`
