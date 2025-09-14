@@ -120,7 +120,8 @@ if [ "${deployment_mode}" = 1 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/robots.conf | sudo tee /etc/nginx/snippets/robots.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/universal_paths.conf | sudo tee /etc/nginx/snippets/universal_paths.conf > /dev/null
-    sudo touch /etc/nginx/htpasswd
+    sudo mkdir -p /etc/nginx/htpasswd.d
+    sudo touch /etc/nginx/htpasswd.d/admin
 else
     sudo mkdir -p /etc/nginx/stream.d
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/stream.d/upstreams.conf | sudo tee /etc/nginx/stream.d/upstreams.conf > /dev/null
