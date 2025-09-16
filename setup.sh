@@ -46,6 +46,10 @@ deployment_mode_prompt
 # Allow reverse proxy
 sudo setsebool -P httpd_can_network_connect 1
 
+# OsmAnd port
+sudo semanage port -a -t http_port_t -p tcp 5055
+sudo semanage port -a -t http_port_t -p udp 5055
+
 # Allow rsync
 sudo setsebool -P rsync_client 1
 sudo setsebool -P rsync_export_all_ro 1 
