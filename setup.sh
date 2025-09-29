@@ -132,3 +132,6 @@ else
     sudo mkdir -p /etc/nginx/stream.d
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/stream.d/upstreams.conf | sudo tee /etc/nginx/stream.d/upstreams.conf > /dev/null
 fi
+
+# Enable & start NGINX
+sudo systemctl enable --now nginx
