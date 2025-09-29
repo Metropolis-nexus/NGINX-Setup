@@ -55,7 +55,7 @@ sudo setsebool -P rsync_client 1
 sudo setsebool -P rsync_export_all_ro 1 
 
 # Open ports for NGINX
-if [ -f '/usr/bin/firewalld-cmd' ]; then
+if [ -f '/usr/sbin/firewalld-cmd' ]; then
     sudo firewall-cmd --permanent --add-service=http
     sudo firewall-cmd --permanent --add-service=https
     sudo firewall-cmd --permanent --add-port=443/udp
