@@ -37,7 +37,7 @@ deployment_mode_prompt(){
         2 ) deployment_mode=2
             ;;
         * ) output 'You did not enter a valid selection.'
-            ip_pinning_prompt
+            deployment_mode_prompt
     esac
 }
 
