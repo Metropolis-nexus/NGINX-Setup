@@ -47,8 +47,8 @@ deployment_mode_prompt
 sudo setsebool -P httpd_can_network_connect 1
 
 # OsmAnd port
-sudo semanage port -a -t http_port_t -p tcp 5055
-sudo semanage port -a -t http_port_t -p udp 5055
+#sudo semanage port -a -t http_port_t -p tcp 5055
+#sudo semanage port -a -t http_port_t -p udp 5055
 
 # Allow rsync
 sudo setsebool -P rsync_client 1
@@ -59,6 +59,8 @@ if [ -f '/usr/bin/firewalld-cmd' ]; then
     sudo firewall-cmd --permanent --add-service=http
     sudo firewall-cmd --permanent --add-service=https
     sudo firewall-cmd --permanent --add-port=443/udp
+    #sudo firewall-cmd --permanent -add-port=5055/tcp
+    #sudo firewall-cmd --permanent -add-port=5055/udp
     sudo firewall-cmd --reload
 fi
 
