@@ -41,14 +41,38 @@ deployment_mode_prompt(){
     esac
 }
 
+osmand_prompt(){
+    output 'Open port 5055 for OsmAnd protocol?'
+    output 
+    output '1) No'
+    output '2) Yes'
+    output 'Insert the number of your selection:'
+    read -r choice
+    case $choice in
+        1 ) osmand=0
+            ;;
+        2 ) osmand=1
+            ;;
+        * ) output 'You did not enter a valid selection.'
+            osmand_prompt
+    esac
+}
+
 deployment_mode_prompt
+
+if [ "${deployment_mode}" = 1 ]; then
+    osmand_prompt
+else
+    osmand=0
+fi
 
 # Allow reverse proxy
 sudo setsebool -P httpd_can_network_connect 1
 
-# OsmAnd port
-#sudo semanage port -a -t http_port_t -p tcp 5055
-#sudo semanage port -a -t http_port_t -p udp 5055
+if [ "${osmand}" = 1 ]; then
+    sudo semanage port -a -t http_port_t -p tcp 5055
+    sudo semanage port -a -t http_port_t -p udp 5055
+fi
 
 # Allow rsync
 sudo setsebool -P rsync_client 1
@@ -59,8 +83,10 @@ if [ -f '/usr/sbin/firewalld-cmd' ]; then
     sudo firewall-cmd --permanent --add-service=http
     sudo firewall-cmd --permanent --add-service=https
     sudo firewall-cmd --permanent --add-port=443/udp
-    #sudo firewall-cmd --permanent -add-port=5055/tcp
-    #sudo firewall-cmd --permanent -add-port=5055/udp
+    if [ "${osmand}" = 1 ]; then
+        sudo firewall-cmd --permanent -add-port=5055/tcp
+        sudo firewall-cmd --permanent -add-port=5055/udp
+    fi
     sudo firewall-cmd --reload
 fi
 
