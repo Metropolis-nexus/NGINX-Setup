@@ -166,7 +166,8 @@ fi
 
 if [ "${deployment_mode}" = 2 ] || [ "${deployment_mode}" = 3 ]; then
     sudo mkdir -p /etc/nginx/stream.d
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/stream.d/upstreams.conf | sudo tee /etc/nginx/stream.d/upstreams.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/stream.d/observatory.nyc01.metropolis.nexus/default.conf | sudo tee /etc/nginx/stream.d/default.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/stream.d/observatory.nyc01.metropolis.nexus/upstreams.conf | sudo tee /etc/nginx/stream.d/upstreams.conf > /dev/null
 fi
 
 # Enable & start NGINX

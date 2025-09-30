@@ -15,7 +15,7 @@ sudo reboot
 
 - Run `setup.sh`
 - Generate a certificate with the `certbot-command` example
-- Copy `/etc/nginx/conf.d/default-quic` from the repo and adjust accordingly
+- Copy `/etc/nginx/conf.d/nginx.citadel.chi01.metropolis.nexus/default-quic.conf` from the repo to `/etc/nginx/conf.d/default-quic.conf` and adjust accordingly
 
 ## Deployment with Stream
 
@@ -39,4 +39,4 @@ sudo reboot
 
 - Run `setup.sh`
 - Generate a certificate with the `certbot-command` example
-- Copy `/etc/nginx/stream.d/default` from the repo and adjust accordingly
+- Adjust `/etc/nginx/stream.d/upstreams.conf` accordingly
