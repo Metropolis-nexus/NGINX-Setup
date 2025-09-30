@@ -138,12 +138,15 @@ sudo systemctl enable --now rotate-session-ticket-keys.timer
 
 # Download NGINX configs
 if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/nginx.conf | sudo tee /etc/nginx/nginx.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/conf.d/default.conf | sudo tee /etc/nginx/conf.d/default.conf > /dev/null
 fi 
 
-if [ "${deployment_mode}" = 2 ] || [ "${deployment_mode}" = 3 ]; then
+if [ "${deployment_mode}" = 1 ]; then
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/nginx.conf | sudo tee /etc/nginx/nginx.conf > /dev/null
+elif [ "${deployment_mode}" = 2 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/nginx-stream.conf | sudo tee /etc/nginx/nginx.conf > /dev/null
+elif [ "${deployment_mode}" = 3 ]; then
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/nginx-mixed.conf | sudo tee /etc/nginx/nginx.conf > /dev/null
 fi
 
 if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
