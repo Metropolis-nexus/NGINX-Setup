@@ -19,7 +19,7 @@ sudo reboot
 
 ## Deployment with Stream
 
-- Fedora's NGINX Stream SSL termination is broken at the moment. Add upstream's RHEL 10 repo you need a workaround:
+- Fedora's NGINX Stream SSL termination is broken at the moment. Add upstream's RHEL 10 repo if you need a workaround:
 ```
 [nginx-mainline]
 name=nginx mainline repo
