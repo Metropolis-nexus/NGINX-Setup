@@ -72,6 +72,10 @@ fi
 # Allow reverse proxy
 sudo setsebool -P httpd_can_network_connect 1
 
+if [ "${deployment_mode}" = 3 ]; then
+    sudo semanage port -a -t http_port_t -p udp 8443
+fi
+
 if [ "${osmand}" = 1 ]; then
     sudo semanage port -a -t http_port_t -p tcp 5055
     sudo semanage port -a -t http_port_t -p udp 5055
