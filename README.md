@@ -19,7 +19,7 @@ sudo reboot
 
 ## Deployment with Stream
 
-- Fedora's NGINX Stream is broken at the moment. Add upstream's RHEL 10 repo instead:
+- Fedora's NGINX Stream SSL termination is broken at the moment. Add upstream's RHEL 10 repo to workaround if you need it:
 ```
 [nginx-mainline]
 name=nginx mainline repo
@@ -31,9 +31,17 @@ module_hotfixes=true
 priority=1
 ```
 
-- Install required dependencies:
+- To run Stream with SSL termination:
+
 ```bash
 sudo rpm-ostree install certbot nginx policycoreutils-python-utils
+sudo reboot
+```
+
+- Or to run Stream without SSL termination:
+
+```bash
+sudo rpm-ostree install certbot nginx-mod-stream policycoreutils-python-utils
 sudo reboot
 ```
 
