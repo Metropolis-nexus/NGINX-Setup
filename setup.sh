@@ -29,12 +29,15 @@ deployment_mode_prompt(){
     output 
     output '1) Regular'
     output '2) Stream'
+    output '3) Both'
     output 'Insert the number of your selection:'
     read -r choice
     case $choice in
         1 ) deployment_mode=1
             ;;
         2 ) deployment_mode=2
+            ;;
+        3 ) deployment_mode=3
             ;;
         * ) output 'You did not enter a valid selection.'
             deployment_mode_prompt
@@ -60,7 +63,7 @@ osmand_prompt(){
 
 deployment_mode_prompt
 
-if [ "${deployment_mode}" = 1 ]; then
+if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     osmand_prompt
 else
     osmand=0
@@ -134,14 +137,16 @@ sudo systemctl enable --now create-session-ticket-keys.service
 sudo systemctl enable --now rotate-session-ticket-keys.timer
 
 # Download NGINX configs
-if [ "${deployment_mode}" = 1 ]; then
+if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/nginx.conf | sudo tee /etc/nginx/nginx.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/conf.d/default.conf | sudo tee /etc/nginx/conf.d/default.conf > /dev/null
-else
+fi 
+
+if [ "${deployment_mode}" = 2 ] || [ "${deployment_mode}" = 3 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/nginx-stream.conf | sudo tee /etc/nginx/nginx.conf > /dev/null
 fi
 
-if [ "${deployment_mode}" = 1 ]; then
+if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     sudo mkdir -p /etc/nginx/snippets
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/security.conf | sudo tee /etc/nginx/snippets/security.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions.conf | sudo tee /etc/nginx/snippets/permissions.conf > /dev/null
@@ -154,7 +159,9 @@ if [ "${deployment_mode}" = 1 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/universal_paths.conf | sudo tee /etc/nginx/snippets/universal_paths.conf > /dev/null
     sudo mkdir -p /etc/nginx/htpasswd.d
     sudo touch /etc/nginx/htpasswd.d/admin
-else
+fi
+
+if [ "${deployment_mode}" = 2 ] || [ "${deployment_mode}" = 3 ]; then
     sudo mkdir -p /etc/nginx/stream.d
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/stream.d/upstreams.conf | sudo tee /etc/nginx/stream.d/upstreams.conf > /dev/null
 fi
