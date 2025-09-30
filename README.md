@@ -4,8 +4,6 @@
 
 NGINX configurations meant for deployment on Fedora CoreOS.
 
-**Note:** While it is possible to combine https and stream in a single VM, Metropolis.nexus uses 2 separate VMs to keep the config simple and be more efficient.
-
 ## Deployment without Stream
 
 - Install required dependencies: 
