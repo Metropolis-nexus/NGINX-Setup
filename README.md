@@ -48,3 +48,41 @@ sudo reboot
 - Run `setup.sh`
 - Generate a certificate with the `certbot-command` example
 - Adjust `/etc/nginx/stream.d/upstreams.conf` accordingly
+
+# headers-more Notes
+
+## add_header Interations
+
+Neither `more_set_headers` nor `more_clear_headers` will override a header set by `add_header`. Take the following 2 examples:
+
+```
+add_header X-XSS-Protection "0";
+more_set_headers "X-XSS-Protection: 1; mode=block";
+```
+
+```
+add_header X-XSS-Protection "0";
+more_clear_headers X-XSS-Protection;
+more_set_headers "X-XSS-Protection: 1; mode=block";
+```
+
+Both will result in the client getting both `X-XSS-Protection: 0` and `X-XSS-Protection: 1; mode=block` in the reply. To only get `X-XSS-Protection: 1; mode=block`, the following must be used:
+
+```
+more_set_headers "X-XSS-Protection: 0";
+more_clear_headers X-XSS-Protection;
+more_set_headers "X-XSS-Protection: 1; mode=block";
+```
+
+`add_header` will not override or undo any headers set by `more_set_headers` in the previous configuration level. For example:
+
+```
+add_header X-XSS-Protection "1";
+more_set_headers "X-XSS-Protection: 0";
+
+location / {
+    add_header X-XSS-Protection "1; mode=block";
+}
+```
+
+The client will get both `X-XSS-Protection: 0` and `X-XSS-Protection: 1; mode=block`. It will not get `X-XSS-Protection: 1`, however.
