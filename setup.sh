@@ -155,24 +155,28 @@ fi
 
 if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     sudo mkdir -p /etc/nginx/snippets
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/security.conf | sudo tee /etc/nginx/snippets/security.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions.conf | sudo tee /etc/nginx/snippets/permissions.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions-mic.conf | sudo tee /etc/nginx/snippets/permissions-mic.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/authentik-proxy.conf | sudo tee /etc/nginx/snippets/authentik-proxy > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/cross-origin-security.conf | sudo tee /etc/nginx/snippets/cross-origin-security.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/proxy.conf | sudo tee /etc/nginx/snippets/proxy.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/htpasswd.conf | sudo tee /etc/nginx/snippets/htpasswd.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions.conf | sudo tee /etc/nginx/snippets/permissions.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/proxy.conf | sudo tee /etc/nginx/snippets/proxy.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/robots.conf | sudo tee /etc/nginx/snippets/robots.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/security.conf | sudo tee /etc/nginx/snippets/security.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/universal_paths.conf | sudo tee /etc/nginx/snippets/universal_paths.conf > /dev/null
 
     sudo mkdir -p /etc/nginx/modsecurity.d
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/crs-level-1.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-1.conf
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/crs-level-2.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-2.conf
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/crs-level-3.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-3.conf
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/crs-level-4.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-4.conf
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/crs.conf | sudo tee /etc/nginx/modsecurity.d/crs.conf
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/exclusions.conf | sudo tee /etc/nginx/modsecurity.d/exclusions.conf
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/refs/heads/main/etc/nginx/modsecurity.d/modsecurity.conf | sudo tee /etc/nginx/modsecurity.d/modsecurity.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/crs-level-1.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-1.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/crs-level-2.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-2.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/crs-level-3.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-3.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/crs-level-4.conf | sudo tee /etc/nginx/modsecurity.d/crs-level-4.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/crs.conf | sudo tee /etc/nginx/modsecurity.d/crs.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/exclusions.conf | sudo tee /etc/nginx/modsecurity.d/exclusions.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/modsecurity.d/modsecurity.conf | sudo tee /etc/nginx/modsecurity.d/modsecurity.conf
+
+    sudo mkdir -p /etc/nginx/headers-more.d
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/headers-more.d/authentik-proxy.conf | sudo tee /etc/nginx/headers-more.d/authentik-proxy.conf
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/main/etc/nginx/headers-more.d/universal.conf | sudo tee /etc/nginx/headers-more.d/universal.conf   
 
     sudo mkdir -p /etc/nginx/htpasswd.d
     sudo touch /etc/nginx/htpasswd.d/admin
