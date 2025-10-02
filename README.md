@@ -59,9 +59,9 @@ sudo reboot
 - Generate a certificate with the `certbot-command` example
 - Adjust `/etc/nginx/stream.d/upstreams.conf` accordingly
 
-# headers-more Notes
+# Notes
 
-## add_header Interations
+## `more_set_headers` and `add_header` Interactions
 
 Neither `more_set_headers` nor `more_clear_headers` will override a header set by `add_header`. Take the following 2 examples:
 
@@ -96,3 +96,25 @@ location / {
 ```
 
 The client will get both `X-XSS-Protection: 0` and `X-XSS-Protection: 1; mode=block`. It will not get `X-XSS-Protection: 1`, however.
+
+## headers-more Limitations
+
+The official documentation mentions some limitations with the headers-more module [here](https://github.com/openresty/headers-more-nginx-module?tab=readme-ov-file#limitations).
+
+While the official documentation states that the `Connection` cannot be removed, in practice, it also cannot be set by the module.
+
+Due to the phases that the headers-more module run in, not all NGINX variables are available to it. This is more so the case with `more_set_input_headers` than `more_clear_headers`, as it runs in the "rewrite tail" phase instead of "output-header-filter". For example:
+
+```
+auth_request           /outpost.goauthentik.io/auth/nginx;
+error_page             401 = @goauthentik_proxy_signin;
+auth_request_set       $auth_cookie $upstream_http_set_cookie;
+more_set_headers -a    "Set-Cookie: $auth_cookie";
+
+auth_request_set       $authentik_username $upstream_http_x_authentik_username;
+more_set_input_headers "Remote-User: $authentik_username";
+```
+
+Here, `more_set_headers` has access to the `$auth_cookie` variable set by `auth_request_set`, so the `Set-Cookie` header will be set correctly. However, `more_set_input_headers` does not have access to the `$authentik_username` set by `auth_request_set`, so the proxied server will not receive the correct `Remote-User` header.
+
+Due to the lack of intuitiveness, this repository will limit using variables with headers-more, especially with the `more_set_input_headers` directive.
