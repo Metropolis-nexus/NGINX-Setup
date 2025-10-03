@@ -156,7 +156,7 @@ fi
 if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     sudo mkdir -p /etc/nginx/snippets
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/authentik-proxy.conf | sudo tee /etc/nginx/snippets/authentik-proxy.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/compression.conf | sudo tee /etc/nginx/snippets/authentik-proxy.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/compression.conf | sudo tee /etc/nginx/snippets/compression.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/cross-origin-security.conf | sudo tee /etc/nginx/snippets/cross-origin-security.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/htpasswd.conf | sudo tee /etc/nginx/snippets/htpasswd.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/snippets/permissions.conf | sudo tee /etc/nginx/snippets/permissions.conf > /dev/null
