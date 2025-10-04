@@ -144,6 +144,7 @@ sudo systemctl enable --now rotate-session-ticket-keys.timer
 if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/conf.d/default.conf | sudo tee /etc/nginx/conf.d/default.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/conf.d/http.conf | sudo tee /etc/nginx/conf.d/http.conf > /dev/null
+    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/etc/nginx/conf.d/proxy-protocol.conf | sudo tee /etc/nginx/conf.d/proxy-protocol.conf > /dev/null
 fi 
 
 if [ "${deployment_mode}" = 1 ]; then
