@@ -1,9 +1,0 @@
-[Unit]
-Description=Monitor Eturnal certificates
-
-[Path]
-PathChanged=/etc/letsencrypt/archive/turn.metropolis.nexus
-Unit=eturnal-sync.service
-
-[Install]
-WantedBy=multi-user.target
