@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Coturn certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/turn.metropolis.nexus
+Unit=coturn-sync.service
+
+[Install]
+WantedBy=multi-user.target
