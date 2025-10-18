@@ -5,13 +5,13 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-        
-ExecStart=/usr/sbin/rsync /etc/letsencrypt/live/turn.metropolis.nexus/fullchain.pem /srv/coturn/certs
-ExecStart=/usr/sbin/rsync /etc/letsencrypt/live/turn.metropolis.nexus/privkey.pem /srv/coturn/certs
-ExecStart=/usr/sbin/chown -R 300003:300003 /srv/coturn/certs/
+
+ExecStart=/usr/sbin/cp /etc/letsencrypt/live/turn.metropolis.nexus/fullchain.pem /srv/coturn/certs
+ExecStart=/usr/sbin/cp /etc/letsencrypt/live/turn.metropolis.nexus/privkey.pem /srv/coturn/certs
+ExecStart=/usr/sbin/chown -R 300003:300003 /srv/coturn/certs
 ExecStart=/usr/sbin/systemctl restart coturn
 
-CapabilityBoundingSet=CAP_CHOWN
+CapabilityBoundingSet=CAP_CHOWN CAP_DAC_OVERRIDE
 LockPersonality=true
 MemoryDenyWriteExecute=true
 NoNewPrivileges=true
