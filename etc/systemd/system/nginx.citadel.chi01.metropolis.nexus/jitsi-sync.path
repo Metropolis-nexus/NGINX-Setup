@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Jitsi certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/jitsi.citadel.chi01.metropolis.nexus
+Unit=jitsi-sync.service
+
+[Install]
+WantedBy=multi-user.target
