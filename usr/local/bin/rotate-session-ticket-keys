@@ -25,6 +25,10 @@ head -c 80 </dev/random >new.key
 rsync -I new.key 4.key
 rm new.key
 
+status=0
+
 if systemctl is-enabled nginx.service >/dev/null; then
-    nginx -s reload
+    nginx -s reload || status=1
 fi
+
+exit $status
