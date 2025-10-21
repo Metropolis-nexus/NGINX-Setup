@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 Type=oneshot
         
-ExecStart=/usr/sbin/rsync -aL /etc/letsencrypt/live/jitsi.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.2.120:/srv/jitsi/certs
-ExecStart=/usr/sbin/rsync -aL /etc/letsencrypt/live/jitsi.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.2.120:/srv/jitsi/certs
+ExecStart=/usr/sbin/rsync -aL --chown 300005:300005 /etc/letsencrypt/live/jitsi.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.2.120:/srv/jitsi/certs
+ExecStart=/usr/sbin/rsync -aL --chown 300005:300005 /etc/letsencrypt/live/jitsi.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.2.120:/srv/jitsi/certs
 
 CapabilityBoundingSet=
 LockPersonality=true
