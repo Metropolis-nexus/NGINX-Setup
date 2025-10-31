@@ -4,6 +4,10 @@
             "matrix_id": "@tommy:metropolis.nexus",
             "email_address": "tommy@metropolis.nexus",
             "role": "m.role.admin"
+        },
+        {
+            "matrix_id": "@tommy:grapheneos.org",
+            "role": "m.role.admin"
         }
     ],
     "support_page": "https://matrix.to/#/#Tommy:metropolis.nexus"
