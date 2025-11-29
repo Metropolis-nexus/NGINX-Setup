@@ -6,6 +6,12 @@
         "issuer": "https://mas.metropolis.nexus/",
         "account": "https://mas.metropolis.nexus/account/"
     },
+    "org.matrix.msc4143.rtc_foci": [
+        {
+            "type": "livekit",
+            "livekit_service_url": "https://matrix-rtc.metropolis.nexus/livekit/jwt"
+        }
+    ],
     "im.vector.riot.jitsi": {
         "preferredDomain": "jitsi.metropolis.nexus"
     }
