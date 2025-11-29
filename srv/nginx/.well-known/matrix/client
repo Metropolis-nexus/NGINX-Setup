@@ -1,8 +1,8 @@
 {
-    "m.homeserver":{
+    "m.homeserver": {
         "base_url": "https://matrix.metropolis.nexus/"
     },
-    "org.matrix.msc2965.authentication":{
+    "org.matrix.msc2965.authentication": {
         "issuer": "https://mas.metropolis.nexus/",
         "account": "https://mas.metropolis.nexus/account/"
     },
