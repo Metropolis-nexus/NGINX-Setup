@@ -101,7 +101,7 @@ fi
 sudo semanage fcontext -a -t httpd_sys_content_t "$(realpath /srv/nginx)(/.*)?"
 sudo mkdir -p /srv/nginx/.well-known/acme-challenge
 sudo chmod -R 755 /srv/nginx
-if [ "${deployment_mode}" = 1 ]; then
+if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/srv/nginx/ads.txt | sudo tee /srv/nginx/ads.txt > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/srv/nginx/app-ads.txt | sudo tee /srv/nginx/app-ads.txt > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/main/srv/nginx/robots.txt | sudo tee /srv/nginx/robots.txt > /dev/null
