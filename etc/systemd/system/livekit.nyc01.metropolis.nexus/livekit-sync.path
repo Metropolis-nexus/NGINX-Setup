@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor LiveKit certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/livekit.metropolis.nexus
+Unit=livekit-sync.service
+
+[Install]
+WantedBy=multi-user.target
