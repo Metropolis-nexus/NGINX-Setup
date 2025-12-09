@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor OpenCloud certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/opencloud.citadel.chi01.metropolis.nexus
+Unit=opencloud-sync.service
+
+[Install]
+WantedBy=multi-user.target
