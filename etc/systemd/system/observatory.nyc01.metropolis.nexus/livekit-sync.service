@@ -8,7 +8,7 @@ Type=oneshot
 
 ExecStart=/usr/sbin/cp /etc/letsencrypt/live/livekit.metropolis.nexus/fullchain.pem /srv/livekit/certs
 ExecStart=/usr/sbin/cp /etc/letsencrypt/live/livekit.metropolis.nexus/privkey.pem /srv/livekit/certs
-ExecStart=/usr/sbin/chown -R 300010:300010 /srv/livekit/certs
+ExecStart=/usr/sbin/chown -R 300011:300011 /srv/livekit/certs
 ExecStart=/usr/sbin/systemctl restart livekit
 
 CapabilityBoundingSet=CAP_CHOWN CAP_DAC_OVERRIDE
