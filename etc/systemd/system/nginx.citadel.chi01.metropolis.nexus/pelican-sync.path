@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Pelican certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/pelican.citadel.chi01.metropolis.nexus
+Unit=pelican-sync.service
+
+[Install]
+WantedBy=multi-user.target
