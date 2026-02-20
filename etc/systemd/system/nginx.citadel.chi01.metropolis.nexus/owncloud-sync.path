@@ -1,9 +1,0 @@
-[Unit]
-Description=Monitor ownCloud certificates
-
-[Path]
-PathChanged=/etc/letsencrypt/archive/cloud.citadel.chi01.metropolis.nexus
-Unit=owncloud-sync.service
-
-[Install]
-WantedBy=multi-user.target
