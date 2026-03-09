@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 Type=oneshot
         
-ExecStart=/usr/sbin/rsync -aL --chown 200003:200003 /etc/letsencrypt/live/vault.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.2.103:/srv/vaultwarden/certs
-ExecStart=/usr/sbin/rsync -aL --chown 200003:200003 /etc/letsencrypt/live/vault.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.2.103:/srv/vaultwarden/certs
+ExecStart=/usr/sbin/rsync -aL --chown 200003:200003 /etc/letsencrypt/live/vault.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.0.103:/srv/vaultwarden/certs
+ExecStart=/usr/sbin/rsync -aL --chown 200003:200003 /etc/letsencrypt/live/vault.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.0.103:/srv/vaultwarden/certs
 
 CapabilityBoundingSet=
 LockPersonality=true
