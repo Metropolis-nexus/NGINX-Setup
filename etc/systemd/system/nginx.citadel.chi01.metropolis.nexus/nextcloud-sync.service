@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 Type=oneshot
         
-ExecStart=/usr/sbin/rsync -aL --chown 101:101 /etc/letsencrypt/live/nextcloud.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.2.112:/srv/nextcloud/certs
-ExecStart=/usr/sbin/rsync -aL --chown 101:101 /etc/letsencrypt/live/nextcloud.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.2.112:/srv/nextcloud/certs
+ExecStart=/usr/sbin/rsync -aL --chown 101:101 /etc/letsencrypt/live/nextcloud.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.0.112:/srv/nextcloud/certs
+ExecStart=/usr/sbin/rsync -aL --chown 101:101 /etc/letsencrypt/live/nextcloud.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.0.112:/srv/nextcloud/certs
 
 CapabilityBoundingSet=
 LockPersonality=true
