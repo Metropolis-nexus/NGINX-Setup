@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 Type=oneshot
         
-ExecStart=/usr/sbin/rsync -aL /etc/letsencrypt/live/pelican.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.2.126:/etc/certs
-ExecStart=/usr/sbin/rsync -aL /etc/letsencrypt/live/pelican.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.2.126:/etc/certs
+ExecStart=/usr/sbin/rsync -aL /etc/letsencrypt/live/pelican.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.0.126:/etc/certs
+ExecStart=/usr/sbin/rsync -aL /etc/letsencrypt/live/pelican.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.0.126:/etc/certs
 
 CapabilityBoundingSet=
 LockPersonality=true
