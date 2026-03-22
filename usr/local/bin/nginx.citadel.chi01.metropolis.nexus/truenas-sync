@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rsync -aL /etc/letsencrypt/live/nas.citadel.chi01.metropolis.nexus/fullchain.pem root@192.168.0.106:/etc/certificates/Certifcate.crt
+rsync -aL /etc/letsencrypt/live/nas.citadel.chi01.metropolis.nexus/privkey.pem root@192.168.0.106:/etc/certificates/Certifcate.key
+ssh root@192.168.0.106 systemctl reload nginx

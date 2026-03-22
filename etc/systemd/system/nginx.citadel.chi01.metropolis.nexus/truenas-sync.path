@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor TrueNAS certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/nas.citadel.chi01.metropolis.nexus
+Unit=truenas-sync.service
+
+[Install]
+WantedBy=multi-user.target
