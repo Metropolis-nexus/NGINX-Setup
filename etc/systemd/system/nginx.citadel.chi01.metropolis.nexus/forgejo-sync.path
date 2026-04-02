@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Forgejo certificates
+
+[Path]
+PathChanged=/etc/letsencrypt/archive/forgejo.citadel.chi01.metropolis.nexus
+Unit=forgejo-sync.service
+
+[Install]
+WantedBy=multi-user.target
