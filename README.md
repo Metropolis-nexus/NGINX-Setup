@@ -16,7 +16,6 @@ sudo reboot
 - Run `setup.sh`
 - Generate a certificate with the `certbot-command` example
 - Copy `/etc/nginx/conf.d/nginx.citadel.chi01.metropolis.nexus/default-quic.conf` from the repo to `/etc/nginx/conf.d/default-quic.conf` and adjust accordingly
-- Remove `/etc/nginx/conf.d/proxy-protocol.conf` if you are not expecting this server to receive any connections from an NGINX Stream upstream.
 - Go in `/etc/nginx/modsecurity.d` and clone `https://github.com/coreruleset/coreruleset`. It's best to use the LTS branch, since the normal releases move too quickly.
 
 ## Deployment with Stream

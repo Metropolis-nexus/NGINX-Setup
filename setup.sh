@@ -144,7 +144,9 @@ sudo systemctl enable --now rotate-session-ticket-keys.timer
 if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/conf.d/default.conf | sudo tee /etc/nginx/conf.d/default.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/conf.d/http.conf | sudo tee /etc/nginx/conf.d/http.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/conf.d/proxy-protocol.conf | sudo tee /etc/nginx/conf.d/proxy-protocol.conf > /dev/null
+    if [ "${deployment_mode}" = 3 ]; then
+        unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/conf.d/proxy-protocol.conf | sudo tee /etc/nginx/conf.d/proxy-protocol.conf > /dev/null
+    fi
 fi 
 
 if [ "${deployment_mode}" = 1 ]; then
@@ -162,7 +164,11 @@ if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/htpasswd.conf | sudo tee /etc/nginx/snippets/htpasswd.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/permissions.conf | sudo tee /etc/nginx/snippets/permissions.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/proxy.conf | sudo tee /etc/nginx/snippets/proxy.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
+    if [ "${deployment_mode}" = 1 ]; then
+        unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
+    elif [ "${deployment_mode}" = 3 ]; then
+        unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/observatory.nyc01.metropolis.nexus/quic.conf | sudo tee /etc/nginx/snippets/quic.conf > /dev/null
+    fi
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/robots.conf | sudo tee /etc/nginx/snippets/robots.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/security.conf | sudo tee /etc/nginx/snippets/security.conf > /dev/null
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-Nexus/NGINX-Setup/master/etc/nginx/snippets/universal_paths.conf | sudo tee /etc/nginx/snippets/universal_paths.conf > /dev/null
