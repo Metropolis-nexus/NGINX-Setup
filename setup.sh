@@ -184,8 +184,11 @@ if [ "${deployment_mode}" = 1 ] || [ "${deployment_mode}" = 3 ]; then
 
     sudo mkdir -p /etc/nginx/headers-more.d
     unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/master/etc/nginx/headers-more.d/authentik-proxy.conf | sudo tee /etc/nginx/headers-more.d/authentik-proxy.conf > /dev/null
-    unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/master/etc/nginx/headers-more.d/universal.conf | sudo tee /etc/nginx/headers-more.d/universal.conf > /dev/null
-
+    if [ "${deployment_mode}" = 1 ]; then
+        unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/master/etc/nginx/headers-more.d/universal.conf | sudo tee /etc/nginx/headers-more.d/universal.conf > /dev/null
+    elif [ "${deployment_mode}" = 3 ]; then
+        unpriv curl -s https://raw.githubusercontent.com/Metropolis-nexus/NGINX-Setup/master/etc/nginx/headers-more.d/observatory.nyc01.metropolis.nexus/universal.conf | sudo tee /etc/nginx/headers-more.d/universal.conf > /dev/null
+    fi
     sudo mkdir -p /etc/nginx/htpasswd.d
     sudo touch /etc/nginx/htpasswd.d/admin
 fi
