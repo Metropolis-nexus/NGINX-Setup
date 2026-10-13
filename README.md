@@ -62,6 +62,7 @@ sudo reboot
 - Run `setup.sh`
 - Generate a certificate with the `certbot-command` example
 - Adjust `/etc/nginx/stream.d/upstreams.conf` accordingly
+- For mixed deployments, go in `/etc/nginx/modsecurity.d` and clone `https://github.com/coreruleset/coreruleset`. It's best to use the LTS branch, since the normal releases move too quickly.
 
 # Notes
 
